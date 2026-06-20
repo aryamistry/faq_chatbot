@@ -1,6 +1,18 @@
 # FAQ Chatbot - VINS Assistant
 
-A full-stack FAQ chatbot application with a clean chat interface and PostgreSQL backend.
+A full-stack FAQ chatbot application with AI-powered responses, feedback tracking, and a clean modern chat interface.
+
+## 📚 Documentation
+
+**New here?** Start with the **[Documentation Index (INDEX.md)](INDEX.md)** for a complete guide to all documentation.
+
+### Quick Links
+- 🚀 **[Quick Start Guide](QUICK_START.md)** - Get running in 5 minutes
+- 📋 **[Complete Setup Guide](SETUP_COMPLETE.md)** - Detailed step-by-step instructions  
+- 📖 **[Documentation Index](INDEX.md)** - Complete navigation of all docs
+- 🔑 **[Gemini API Setup](backend/GEMINI_SETUP.md)** - Get your API key
+- 👍 **[Feedback System](backend/FEEDBACK_SETUP.md)** - How feedback works
+- 🧪 **[Testing Guide](TEST_FEEDBACK.md)** - Verify everything works
 
 ## 🏗️ Project Structure
 
@@ -23,30 +35,52 @@ faq_chatbot/
 
 ## 🚀 Quick Start
 
-### 1. Start the Backend
+### First Time Setup
+See **[QUICK_START.md](QUICK_START.md)** for 5-minute setup guide.
 
+**Or use the automated script (Windows):**
+```bash
+# Just double-click:
+start.bat
+```
+
+### Already Setup?
+
+**Terminal 1 - Backend:**
 ```bash
 cd backend
-npm install
 npm run dev
 ```
 
-Backend runs at: `http://localhost:5000`
-
-### 2. Start the Frontend
-
-**Option A: Simple HTTP Server (Recommended)**
+**Terminal 2 - Frontend:**
 ```bash
-# From the root directory (faq_chatbot/)
-npm install
 npm start
 ```
 
-Frontend runs at: `http://localhost:3000`
+Then open: **http://localhost:3000**
 
-**Option B: Direct File Open (Works but shows security warning)**
-- Just open `index.html` in your browser
-- Functionality works, but you'll see a console warning
+## 📖 Documentation
+
+- 🚀 **[Quick Start Guide](QUICK_START.md)** - Get running in 5 minutes
+- 📋 **[Complete Setup Guide](SETUP_COMPLETE.md)** - Detailed step-by-step instructions
+- 🔑 **[Gemini API Setup](backend/GEMINI_SETUP.md)** - Get your API key
+- 👍 **[Feedback System](backend/FEEDBACK_SETUP.md)** - How feedback works
+- 🧪 **[Testing Guide](TEST_FEEDBACK.md)** - Verify everything works
+
+## 🛠️ Technologies Used
+
+**Frontend:**
+- Pure HTML5, CSS3, JavaScript (no frameworks)
+- Responsive design
+- Modern chat UI
+- Fuse.js for fuzzy search
+
+**Backend:**
+- Node.js + Express
+- PostgreSQL with pg driver
+- Google Gemini AI (gemini-1.5-flash)
+- CORS enabled
+- Environment-based configuration
 
 ## 📡 API Endpoints
 
