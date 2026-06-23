@@ -1,86 +1,217 @@
 # FAQ Chatbot - VINS Assistant
 
-A full-stack FAQ chatbot application with AI-powered responses, feedback tracking, and a clean modern chat interface.
+A full-stack AI-powered FAQ chatbot for VINS interns with Google Gemini integration.
 
-## 📚 Documentation
-
-**New here?** Start with the **[Documentation Index (INDEX.md)](INDEX.md)** for a complete guide to all documentation.
-
-### Quick Links
-- 🚀 **[Quick Start Guide](QUICK_START.md)** - Get running in 5 minutes
-- 📋 **[Complete Setup Guide](SETUP_COMPLETE.md)** - Detailed step-by-step instructions  
-- 📖 **[Documentation Index](INDEX.md)** - Complete navigation of all docs
-- 🔑 **[Gemini API Setup](backend/GEMINI_SETUP.md)** - Get your API key
-- 👍 **[Feedback System](backend/FEEDBACK_SETUP.md)** - How feedback works
-- 🧪 **[Testing Guide](TEST_FEEDBACK.md)** - Verify everything works
-
-## 🏗️ Project Structure
+## 📁 Project Structure
 
 ```
 faq_chatbot/
-├── backend/              # Node.js + Express + PostgreSQL backend
-│   ├── config/          # Database configuration
-│   ├── controllers/     # Business logic (FAQ, Chat, Feedback)
-│   ├── models/          # Database queries (FAQ, Logs)
-│   ├── routes/          # API routes (FAQ, Chat, Feedback)
-│   ├── services/        # External services (Gemini AI)
-│   ├── seed/            # Database seed scripts
-│   ├── database/        # SQL schema files
-│   └── server.js        # Main server file
-├── index.html           # Frontend HTML
-├── style.css            # Frontend styles
-├── script.js            # Frontend JavaScript
-└── faqSearch.js         # Fuzzy search module
+├── backend/                    # Node.js + Express + PostgreSQL + Gemini AI
+│   ├── config/                # Database configuration
+│   ├── controllers/           # Request handlers
+│   ├── models/                # Database queries
+│   ├── routes/                # API endpoints
+│   ├── services/              # Gemini AI integration
+│   ├── seed/                  # Database seed data
+│   ├── database/              # SQL schemas
+│   └── server.js              # Main server file
+│
+├── faqproj_vins-main/         # Main Website Frontend
+│   ├── assistant.html         # ✅ AI Assistant (Backend Integrated)
+│   ├── index.html             # Browse FAQs
+│   ├── intro.html             # Getting Started
+│   ├── dashboard.html         # Analytics
+│   ├── admin.html             # Admin Panel
+│   ├── style.css              # Global styles
+│   ├── theme.js               # Theme switcher
+│   └── INTEGRATION_GUIDE.md   # Setup instructions
+│
+├── .gitignore                 # Git ignore rules
+├── README.md                  # This file
+└── INTEGRATION_COMPLETE.md    # Integration summary
 ```
 
 ## 🚀 Quick Start
 
-### First Time Setup
-See **[QUICK_START.md](QUICK_START.md)** for 5-minute setup guide.
+### Prerequisites
+- Node.js (v14+)
+- PostgreSQL (v12+)
+- Google Gemini API key
 
-**Or use the automated script (Windows):**
+### 1. Setup Backend
+
 ```bash
-# Just double-click:
-start.bat
-```
-
-### Already Setup?
-
-**Terminal 1 - Backend:**
-```bash
+# Install dependencies
 cd backend
+npm install
+
+# Configure environment
+# Edit backend/.env with your credentials:
+#   - DB_PASSWORD (your PostgreSQL password)
+#   - GEMINI_API_KEY (get from https://makersuite.google.com/app/apikey)
+
+# Create database
+createdb -U postgres faq_chatbot
+
+# Setup tables
+node createTable.js
+npm run setup-logs
+
+# Start server
 npm run dev
 ```
 
-**Terminal 2 - Frontend:**
-```bash
-npm start
+Expected output:
+```
+🚀 Server is running on port 5000
+📡 API available at http://localhost:5000/api
 ```
 
-Then open: **http://localhost:3000**
+### 2. Open Frontend
+
+**Option A: Direct Open**
+```bash
+# Double-click this file:
+faqproj_vins-main/assistant.html
+```
+
+**Option B: Local Server (Recommended)**
+```bash
+cd faqproj_vins-main
+python -m http.server 8000
+# Open: http://localhost:8000/assistant.html
+```
+
+### 3. Test
+
+Type: **"What is NOC?"** and watch the AI respond! 🎉
 
 ## 📖 Documentation
 
-- 🚀 **[Quick Start Guide](QUICK_START.md)** - Get running in 5 minutes
-- 📋 **[Complete Setup Guide](SETUP_COMPLETE.md)** - Detailed step-by-step instructions
-- 🔑 **[Gemini API Setup](backend/GEMINI_SETUP.md)** - Get your API key
-- 👍 **[Feedback System](backend/FEEDBACK_SETUP.md)** - How feedback works
-- 🧪 **[Testing Guide](TEST_FEEDBACK.md)** - Verify everything works
+- **Integration Guide:** [faqproj_vins-main/INTEGRATION_GUIDE.md](faqproj_vins-main/INTEGRATION_GUIDE.md)
+- **Integration Summary:** [INTEGRATION_COMPLETE.md](INTEGRATION_COMPLETE.md)
+- **Quick Test:** [faqproj_vins-main/QUICK_TEST.md](faqproj_vins-main/QUICK_TEST.md)
+- **Backend Setup:** [backend/README.md](backend/README.md)
+- **Gemini Setup:** [backend/GEMINI_SETUP.md](backend/GEMINI_SETUP.md)
 
-## 🛠️ Technologies Used
+## 🎯 Features
+
+### ✅ AI Assistant
+- Natural language understanding via Google Gemini
+- Multi-turn conversations with context memory
+- Answers based on PostgreSQL FAQ database
+- Conversation logging for analytics
+
+### ✅ Main Website
+- Professional UI with navigation
+- Multiple pages (FAQs, Dashboard, Admin)
+- Dark/Light theme switcher
+- Responsive design
+- **AI Assistant fully integrated**
+
+### ✅ Backend
+- RESTful API with Express
+- PostgreSQL database
+- Google Gemini AI integration
+- Feedback logging system
+- Error handling & validation
+
+## 🛠️ Technology Stack
 
 **Frontend:**
-- Pure HTML5, CSS3, JavaScript (no frameworks)
-- Responsive design
-- Modern chat UI
-- Fuse.js for fuzzy search
+- Pure HTML5, CSS3, JavaScript
+- No frameworks or build tools
+- Vanilla JS fetch API
 
 **Backend:**
 - Node.js + Express
-- PostgreSQL with pg driver
-- Google Gemini AI (gemini-1.5-flash)
-- CORS enabled
-- Environment-based configuration
+- PostgreSQL + pg driver
+- Google Gemini AI SDK
+- dotenv, cors
+
+## 📡 API Endpoints
+
+| Endpoint | Method | Purpose |
+|----------|--------|---------|
+| `/` | GET | Health check |
+| `/api/faqs` | GET | Get all FAQs |
+| `/api/chat` | POST | Send message, get AI response |
+| `/api/feedback` | POST | Submit feedback (👍👎) |
+| `/api/feedback/stats` | GET | Get feedback statistics |
+
+## 🧪 Testing
+
+```bash
+# Test backend
+curl http://localhost:5000
+
+# Test chat endpoint
+curl -X POST http://localhost:5000/api/chat \
+  -H "Content-Type: application/json" \
+  -d '{"conversationHistory":[],"message":"What is NOC?"}'
+```
+
+## 🔧 Configuration
+
+### Backend Environment Variables
+
+Edit `backend/.env`:
+```env
+PORT=5000
+DB_HOST=localhost
+DB_USER=postgres
+DB_PASSWORD=your_postgres_password
+DB_NAME=faq_chatbot
+DB_PORT=5432
+GEMINI_API_KEY=your_gemini_api_key
+```
+
+### Frontend API URL
+
+In `faqproj_vins-main/assistant.html`:
+```javascript
+const CHAT_API_URL = 'http://localhost:5000/api/chat';
+```
+
+## 🐛 Troubleshooting
+
+### Backend won't start
+```bash
+cd backend
+node testConnection.js  # Test database connection
+```
+
+### Frontend shows errors
+- Check backend is running: http://localhost:5000
+- Check browser console (F12) for error details
+- Ensure CORS is enabled (already configured)
+
+### AI not responding
+- Verify Gemini API key in `backend/.env`
+- Check backend logs for errors
+- Ensure database has FAQs: `SELECT COUNT(*) FROM faqs;`
+
+## 📊 Current Status
+
+- ✅ Backend API operational
+- ✅ PostgreSQL database connected
+- ✅ Google Gemini AI integrated
+- ✅ Main website frontend integrated
+- ✅ AI Assistant working with multi-turn conversations
+- ✅ Feedback logging implemented
+- ✅ Error handling complete
+
+## 🎉 Integration Complete!
+
+The main VINS website (faqproj_vins-main) is now fully integrated with the AI backend.
+
+**To start using:**
+1. Run: `cd backend && npm run dev`
+2. Open: `faqproj_vins-main/assistant.html`
+3. Start chatting!
+
+For detailed instructions, see [INTEGRATION_COMPLETE.md](INTEGRATION_COMPLETE.md)
+
 
 ## 📡 API Endpoints
 
